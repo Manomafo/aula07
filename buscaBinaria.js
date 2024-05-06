@@ -27,26 +27,34 @@
 //   console.log("O item não está na lista.");
 // }
 
-// Define a função buscaBinaria com os parâmetros valorBuascado e listaDeValores,  oprimeiro é o valor buscando o segundo a lista.
-function buscaBinaria(valorBuscando, listaDeValores) {
-  // Aqui criamos duas "variaveis" que vão armazenar o índice do começo e do fim da listaDeValores.
-  let inicio = 0;
-  let fim = listaDeValores.length - 1;
+// Define a função buscaBinaria com os parâmetros valorBuscado e ListaDeValores, o primeiro é o valor buscado o segundo a lista.
+function buscaBinaria(valorBuscado, ListaDeValores) {
+  // Aqui criamos duas "variáveis" que vão armazenar o índice do começo e do fim da listaDeValores.
+  let inicio = 0,
+    fim = ListaDeValores.length - 1;
 
+  // Vai rodar um loop até sobrar um único elemento no array(retorna o valorBuscado se achar ele, casó contrario retorna -1)
   while (inicio <= fim) {
     // Toda vez que o while rodar vai recriar o meio que será o índice do centro do listaDeValores.
     let meio = Math.floor((inicio + fim) / 2);
 
-    // Retorna o valor do meio caso encotrar o valorBuscado.
-    if (listaDeValores[meio] === valorBuscando) {
+    // Retorna o valor do meio caso encontrar o valorBuscado.
+    if (ListaDeValores[meio] === valorBuscado) {
       return meio;
-    } else if (valorBuscando < listaDeValores[meio]) {
+    }
+    // Elimina a parte maior do array caso o valor buscado seja menor que o meio.
+    else if (valorBuscado <= ListaDeValores[meio]) {
       fim = meio;
-    } else {
+    }
+    // Elimina a parte menor do array caso o valor buscado seja maior que o meio.
+    else {
       inicio = meio;
     }
+
+    // Retorna -1 caso não encontrar o valorBuscado dentro da Lista.
+    return -1;
   }
-  return -1;
 }
 
-console.log(buscaBinaria(8, [1, 3, 6, 8]));
+//Executa e imprime a função buscaBinaria com os argumentos passados abaixo:
+console.log(buscaBinaria(9, [1, 3, 6, 8]));
